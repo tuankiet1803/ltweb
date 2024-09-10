@@ -2,15 +2,15 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <servlet>
     <description></description>
-    <display-name>aController</display-name>
-    <servlet-name>aController</servlet-name>
-    <servlet-class>a.controllers.aController</servlet-class>
+    <display-name>HelloController</display-name>
+    <servlet-name>HelloController</servlet-name>
+    <servlet-class>Helloworld.controllers.HelloController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>aController</servlet-name>
-    <url-pattern>/aController</url-pattern>
+    <servlet-name>HelloController</servlet-name>
+    <url-pattern>/HelloController</url-pattern>
   </servlet-mapping>
-  <display-name>helloword</display-name>
+  <display-name>Helloworld</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

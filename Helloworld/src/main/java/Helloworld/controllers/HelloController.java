@@ -1,22 +1,21 @@
-package helloworld.controllers;
+package Helloworld.controllers;
 
 import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class aController
+ * Servlet implementation class HelloController
  */
-public class helloworldController extends HttpServlet {
+public class HelloController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public helloworldController() {
+    public HelloController() {
         // TODO Auto-generated constructor stub
     }
 
