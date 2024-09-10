@@ -1,4 +1,4 @@
-package a.controllers;
+package helloworld.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/home", "/trangchu"})
-public class bController extends HttpServlet{
+public class loginController extends HttpServlet{
 
 	/**
 	 * 

@@ -1,4 +1,4 @@
-package a.controllers;
+package helloworld.controllers;
 
 import java.io.IOException;
 
@@ -10,13 +10,13 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class aController
  */
-public class aController extends HttpServlet {
+public class helloworldController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public aController() {
+    public helloworldController() {
         // TODO Auto-generated constructor stub
     }
 
