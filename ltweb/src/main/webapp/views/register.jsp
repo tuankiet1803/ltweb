@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <head>
 <meta charset="UTF-8">
 <title>Registration Form</title>
@@ -49,9 +52,13 @@
 			<label for="percentage">Password</label> 
 			<input type="text" id="password" name="password" class="input-field" required><br>
 
-			<input type="submit" value="Register">
+			<button class="btn btn-primary" type="submit">Register</button>
+			<button class="btn btn-primary" onclick="location.href='/ltweb/login'" type="button">
+         Login</button>
 		</form>
 	</div>
+		<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

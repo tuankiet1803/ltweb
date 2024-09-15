@@ -1,4 +1,4 @@
-package ltweb.controllers;
+package ltweb.controllers.admin;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import ltweb.models.UserModel;
 
-@WebServlet(urlPatterns = "/home")
+@WebServlet(urlPatterns = "/admin/home")
 public class HomeController extends HttpServlet {
 
 	/**
@@ -26,7 +26,7 @@ public class HomeController extends HttpServlet {
 		UserModel user = (UserModel) session.getAttribute("account");
 		if (session != null && session.getAttribute("account") != null) {
 			req.setAttribute("phone", user.getPhone());
-			req.getRequestDispatcher("/views/home.jsp").forward(req, resp);
+			req.getRequestDispatcher("/views/admin/home.jsp").forward(req, resp);
 		}
 	}
 

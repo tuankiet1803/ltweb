@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="container">
-    <form action="/ltweb/login" method="post">
+    <form action="/ltweb/home" method="post">
         <h2 class="mb-3">Dashboard</h2>
         <%-- Check if user is logged in --%>
 

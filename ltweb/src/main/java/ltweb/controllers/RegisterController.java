@@ -51,6 +51,8 @@ public class RegisterController extends HttpServlet {
 		String email = req.getParameter("email");
 		String fullname = req.getParameter("fullname");
 		String phone = req.getParameter("phone");
+		String username = req.getParameter("username");
+		int roleid = Integer.getInteger(req.getParameter("roleid"));
 		userServiceimplement service = new userServiceimplement();
 		String alertMsg = "";
 		if (service.checkExistEmail(email)) {
@@ -65,7 +67,7 @@ public class RegisterController extends HttpServlet {
 			req.getRequestDispatcher("/views/register.jsp").forward(req, resp);
 			return;
 		}
-		boolean isSuccess = service.register(email, password, image, fullname, phone);
+		boolean isSuccess = service.register(email, password, username, fullname, phone, image, roleid);
 		if (isSuccess) {
 			req.setAttribute("alert", alertMsg);
 			resp.sendRedirect(req.getContextPath() + "/login");

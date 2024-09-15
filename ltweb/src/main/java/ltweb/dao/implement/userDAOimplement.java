@@ -1,10 +1,12 @@
 package ltweb.dao.implement;
 
+import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import ltweb.config.DBConnectMySQL;
 import ltweb.dao.IUserDAO;
@@ -26,8 +28,17 @@ public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				list.add(new UserModel(rs.getInt("id"), rs.getString("fullname"), rs.getString("email"),
-						rs.getString("phone"), rs.getString("image"), rs.getString("password")));
+				UserModel user = new UserModel();
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setUserName(rs.getString("username"));
+				user.setFullName(rs.getString("fullname"));
+				user.setPassWord(rs.getString("password"));
+				user.setAvatar(rs.getString("image"));
+				user.setRoleid(Integer.parseInt(rs.getString("roleid")));
+				user.setPhone(rs.getString("phone"));
+				user.setCreatedDate(rs.getDate("createDate"));
+				list.add(user);
 			}
 			return list;
 		} catch (Exception e) {
@@ -41,17 +52,23 @@ public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
 	public UserModel findByID(int id) {
 		// TODO Auto-generated method stub
 		String sql = "SELECT * FROM users where id = ?";
-		List<UserModel> list = new ArrayList<UserModel>();
 		try {
 			conn = super.getDatabaseConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
+			UserModel user = new UserModel();
 			while (rs.next()) {
-				list.add(new UserModel(rs.getInt("id"), rs.getString("fullname"), rs.getString("phone"),
-						rs.getString("image"), rs.getString("password"), rs.getString("email")));
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setUserName(rs.getString("username"));
+				user.setFullName(rs.getString("fullname"));
+				user.setPassWord(rs.getString("password"));
+				user.setAvatar(rs.getString("image"));
+				user.setRoleid(Integer.parseInt(rs.getString("roleid")));
+				user.setPhone(rs.getString("phone"));
+				user.setCreatedDate(rs.getDate("createDate"));
 			}
-			UserModel user = list.getFirst();
 			return user;
 
 		} catch (Exception e) {
@@ -63,18 +80,34 @@ public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
 	@Override
 	public void insert(UserModel user) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO users (id, fullname, email, image, phone, password) VALUES (?,?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO `ltweb`.`users` (`fullname`, `email`, `image`, `phone`, `password`, `username`, `roleid`, `createDate`) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn = super.getDatabaseConnection();
 			ps = conn.prepareStatement(sql);
 
-			ps.setInt(1, user.getId());
-			ps.setString(2, user.getFullname());
-			ps.setString(3, user.getEmail());
-			ps.setString(4, user.getImage());
-			ps.setString(5, user.getPhone());
-			ps.setString(6, user.getPassword());
-
+			ps.setString(1, user.getFullName());
+			ps.setString(2, user.getEmail());
+			ps.setString(3, user.getAvatar());
+			ps.setString(4, user.getPhone());
+			ps.setString(5, user.getPassWord());
+			ps.setString(6, user.getUserName());
+			ps.setInt(7, user.getRoleid());
+			ps.setDate(8, user.getCreatedDate());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	public void updatePassword(String email, String password) {
+		String sql = "UPDATE users SET password = ? WHERE email = ?;";
+		try {
+			conn = super.getDatabaseConnection();
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, password);
+			ps.setString(2, email);
 			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -86,17 +119,23 @@ public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
 	public UserModel findByPhone(String phone) {
 		// TODO Auto-generated method stub
 		String sql = "SELECT * FROM users where phone = ?";
-		List<UserModel> list = new ArrayList<UserModel>();
 		try {
 			conn = super.getDatabaseConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, phone);
 			rs = ps.executeQuery();
+			UserModel user = new UserModel();
 			while (rs.next()) {
-				list.add(new UserModel(rs.getInt("id"), rs.getString("fullname"), rs.getString("phone"),
-						rs.getString("image"), rs.getString("password"), rs.getString("email")));
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setUserName(rs.getString("username"));
+				user.setFullName(rs.getString("fullname"));
+				user.setPassWord(rs.getString("password"));
+				user.setAvatar(rs.getString("image"));
+				user.setRoleid(Integer.parseInt(rs.getString("roleid")));
+				user.setPhone(rs.getString("phone"));
+				user.setCreatedDate(rs.getDate("createDate"));
 			}
-			UserModel user = list.getFirst();
 			return user;
 
 		} catch (Exception e) {
@@ -157,11 +196,42 @@ public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
 //			for (UserModel userModel : list) {
 //				System.out.println(userModel.getId());
 //			}
-			UserModel b = a.findByPhone("s");
-			System.out.println(b);
+//			UserModel b = a.findByID(10);
+//			System.out.println(b)
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public UserModel findByUsername(String username) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * FROM ltweb.users where username = ?";
+		try {
+			conn = super.getDatabaseConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			rs = ps.executeQuery();
+			
+			UserModel user = new UserModel();
+			while (rs.next()) {
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setUserName(rs.getString("username"));
+				user.setFullName(rs.getString("fullname"));
+				user.setPassWord(rs.getString("password"));
+				user.setAvatar(rs.getString("image"));
+				user.setRoleid(Integer.parseInt(rs.getString("roleid")));
+				user.setPhone(rs.getString("phone"));
+				user.setCreatedDate(rs.getDate("createDate"));
+			}
+			return user;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
 }

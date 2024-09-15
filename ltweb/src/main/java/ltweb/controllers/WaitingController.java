@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import ltweb.models.UserModel;
+
 @WebServlet(urlPatterns = "/waiting")
 public class WaitingController extends HttpServlet {
 
@@ -21,9 +23,18 @@ public class WaitingController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = req.getSession();
 		if (session != null && session.getAttribute("account") != null) {
-			resp.sendRedirect(req.getContextPath() + "/home");
+			UserModel u = (UserModel) session.getAttribute("account");
+			req.setAttribute("username", u.getUserName());
+			if (u.getRoleid() == 1) {
+				resp.sendRedirect(req.getContextPath() + "/admin/home");
+			} else if (u.getRoleid() == 2) {
+				resp.sendRedirect(req.getContextPath() + "/manager/home");
+			} else {
+				resp.sendRedirect(req.getContextPath() + "/home");
+			}
 		} else {
 			resp.sendRedirect(req.getContextPath() + "/login");
 		}
+
 	}
 }

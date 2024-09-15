@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
 				}
 			}
 		}
-		req.getRequestDispatcher("views/login.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
 	}
 
 	@Override

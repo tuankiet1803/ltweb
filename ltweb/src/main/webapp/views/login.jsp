@@ -54,7 +54,9 @@ body {
 					required>
 			</div>
 			<button class="btn btn-primary" type="submit">Sign in</button>
-			
+			<button class="btn btn-primary" onclick="location.href='/ltweb/register'" type="button">
+         Sign up</button><br>
+        	<a href = "/ltweb/forgotpassword">Quen mat khau</a>
 		</form>
 		<br/>
 		

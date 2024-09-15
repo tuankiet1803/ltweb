@@ -1,5 +1,7 @@
 package ltweb.services.implement;
 
+import java.util.Random;
+
 import ltweb.dao.implement.userDAOimplement;
 import ltweb.models.UserModel;
 import ltweb.services.IUserService;
@@ -14,7 +16,7 @@ public class userServiceimplement implements IUserService {
 		try {
 			UserModel user = userDao.findByPhone(phone);
 			System.out.println(user.toString());
-			if (user != null && password.equals(user.getPassword())) {
+			if (user != null && password.equals(user.getPassWord())) {
 				return user;
 			}
 		} catch (Exception e) {
@@ -24,29 +26,17 @@ public class userServiceimplement implements IUserService {
 		return null;
 	}
 
-
 	@Override
 	public UserModel get(String phone) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
 	@Override
 	public void insert(UserModel user) {
 		// TODO Auto-generated method stub
 		userDao.insert(user);
 
-	}
-
-	@Override
-	public boolean register(String email, String password, String image, String fullname, String phone) {
-		// TODO Auto-generated method stub
-		if (userDao.checkExistPhone(phone)) {
-			return false;
-		}
-		userDao.insert(new UserModel(0, fullname, phone, image, password, email));
-		return true;
 	}
 
 	@Override
@@ -59,5 +49,42 @@ public class userServiceimplement implements IUserService {
 	public boolean checkExistPhone(String phone) {
 		// TODO Auto-generated method stub
 		return userDao.checkExistPhone(phone);
+	}
+
+	@Override
+	public boolean register(String email, String password, String username, String fullname, String phone,
+			String avatar, int roleid) {
+		if (userDao.checkExistPhone(phone)) {
+			return false;
+		}
+		UserModel user = new UserModel();
+		user.setEmail("email");
+		user.setUserName("username");
+		user.setFullName("fullname");
+		user.setPassWord("password");
+		user.setAvatar("avatar");
+		user.setRoleid(roleid);
+		user.setPhone("phone");
+		userDao.insert(user);
+		return true;
+	}
+	public String RandomPassword() {
+	    int leftLimit = 48; // numeral '0'
+	    int rightLimit = 122; // letter 'z'
+	    int targetStringLength = 10;
+	    Random random = new Random();
+
+	    String generatedString = random.ints(leftLimit, rightLimit + 1)
+	      .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+	      .limit(targetStringLength)
+	      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+	      .toString();
+	    return generatedString;
+	}
+
+	@Override
+	public void updatePassword(String password, String email) {
+		// TODO Auto-generated method stub
+		userDao.updatePassword(email, password);
 	}
 }
