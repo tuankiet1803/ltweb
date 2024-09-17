@@ -20,12 +20,12 @@
 </head>
 <body>
     <div class="container">
-    <form action="/ltweb/login" method="post">
+    <form action="/ltweb/home" method="post">
         <h2 class="mb-3">Dashboard</h2>
         <%-- Check if user is logged in --%>
 
         <p>Welcome, ${phone }!</p>
-        <button class="btn btn-primary" type="submit">Log out</button>
+        <button class="btn btn-primary" onclick="location.href='/ltweb/logout'" type="button">Log out</button>
     </form>    
     </div>
     

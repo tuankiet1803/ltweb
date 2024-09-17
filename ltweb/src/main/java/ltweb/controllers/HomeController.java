@@ -33,10 +33,6 @@ public class HomeController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = req.getSession();
-		if(session.getAttribute("account") != null) {
-			session.removeAttribute("account");
-			req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
-		}
+
 	}
 }

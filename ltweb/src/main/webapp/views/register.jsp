@@ -49,9 +49,12 @@
 			<input type="email" id="email" name="email" class="input-field" required><br> 
 			<label for="phone">Phone:</label> 
 			<input type="tel" id="phone" name="phone" class="input-field" required><br> 
-			<label for="percentage">Password</label> 
+			<label for="percentage">Password:</label> 
 			<input type="text" id="password" name="password" class="input-field" required><br>
-
+			<label for="percentage">User name:</label> 
+			<input type="text" id="username" name="username" class="input-field" required><br>
+			<label for="percentage">Role ID:</label> 
+			<input type="number" id="roleid" name="roleid" class="input-field" required><br>
 			<button class="btn btn-primary" type="submit">Register</button>
 			<button class="btn btn-primary" onclick="location.href='/ltweb/login'" type="button">
          Login</button>

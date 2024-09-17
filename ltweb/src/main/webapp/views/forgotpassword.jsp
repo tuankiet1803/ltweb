@@ -11,7 +11,7 @@
 			<label for="email">Email:</label> 
 			<input type="email" id="email" name="email" class="input-field" required><br> 
 			${alert}<br>
-			<button class="btn btn-primary" type="submit">Lay lai mat khau</button>
+			<button class="btn btn-primary" type="submit">Lay lai mat khau</button><br>
 			<a href="/ltweb/login">Quay lai Login</a>
 		</form>
 </body>
