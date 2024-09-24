@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		String phone = req.getParameter("phone");
+		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		boolean isRememberMe = false;
 		String remember = req.getParameter("remember");
@@ -59,7 +59,7 @@ public class LoginController extends HttpServlet {
 			isRememberMe = true;
 		}
 		String alertMsg = "";
-		if (phone.isEmpty() || password.isEmpty()) {
+		if (username.isEmpty() || password.isEmpty()) {
 			alertMsg = "Tài khoản hoặc mật khẩu không được rỗng";
 			req.setAttribute("alert", alertMsg);
 			req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
@@ -68,12 +68,12 @@ public class LoginController extends HttpServlet {
 
 		userServiceimplement service = new userServiceimplement();
 
-		UserModel user = service.login(phone, password);
+		UserModel user = service.login(username, password);
 		if (user != null) {
 			HttpSession session = req.getSession(true);
 			session.setAttribute("account", user);
 			if (isRememberMe) {
-				saveRemeberMe(resp, phone);
+				saveRemeberMe(resp, username);
 			}
 
 			resp.sendRedirect(req.getContextPath() + "/waiting");

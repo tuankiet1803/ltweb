@@ -22,12 +22,7 @@ public class HomeController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = req.getSession();
-		UserModel user = (UserModel) session.getAttribute("account");
-		if (session != null && session.getAttribute("account") != null) {
-			req.setAttribute("phone", user.getPhone());
 			req.getRequestDispatcher("/views/home.jsp").forward(req, resp);
-		}
 	}
 
 	@Override

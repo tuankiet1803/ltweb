@@ -11,10 +11,10 @@ public class userServiceimplement implements IUserService {
 	userDAOimplement userDao = new userDAOimplement();
 
 	@Override
-	public UserModel login(String phone, String password) {
+	public UserModel login(String username, String password) {
 		// TODO Auto-generated method stub
 		try {
-			UserModel user = userDao.findByPhone(phone);
+			UserModel user = userDao.findByUsername(username);
 			System.out.println(user.toString());
 			if (user != null && password.equals(user.getPassWord())) {
 				return user;
