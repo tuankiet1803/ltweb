@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import ltweb.config.DBConnectMySQL;
 import ltweb.dao.IUserDAO;
@@ -100,12 +99,13 @@ public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
 			e.printStackTrace();
 		}
 	}
+
 	public void updatePassword(String email, String password) {
 		String sql = "UPDATE users SET password = ? WHERE email = ?;";
 		try {
 			conn = super.getDatabaseConnection();
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, password);
 			ps.setString(2, email);
 			ps.executeUpdate();
@@ -188,22 +188,6 @@ public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
 		return duplicate;
 	}
 
-	public static void main(String[] args) {
-		try {
-			userDAOimplement a = new userDAOimplement();
-//			a.insert(new UserModel(0,"aaa", "bbb", "ccc", "ddd", "eee"));
-//			List<UserModel> list = a.findall();
-//			for (UserModel userModel : list) {
-//				System.out.println(userModel.getId());
-//			}
-//			UserModel b = a.findByID(10);
-//			System.out.println(b)
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-	}
-
 	@Override
 	public UserModel findByUsername(String username) {
 		// TODO Auto-generated method stub
@@ -213,7 +197,7 @@ public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			rs = ps.executeQuery();
-			
+
 			UserModel user = new UserModel();
 			while (rs.next()) {
 				user.setId(rs.getInt("id"));
@@ -232,6 +216,26 @@ public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public void updateProfile(String fullname, String phone, String email, String image, int id) {
+		// TODO Auto-generated method stub
+		String sql = "UPDATE users SET fullname = ?, phone = ?, email = ?, image = ? WHERE id = ?;";
+		try {
+			conn = super.getDatabaseConnection();
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, fullname);
+			ps.setString(2, phone);
+			ps.setString(3, email);
+			ps.setString(4, image);
+			ps.setInt(5, id);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 }

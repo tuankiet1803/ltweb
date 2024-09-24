@@ -11,7 +11,7 @@ public interface IUserDAO {
 	UserModel findByID(int id);
 
 	UserModel findByPhone(String phone);
-	
+
 	UserModel findByUsername(String username);
 
 	boolean checkExistEmail(String email);
@@ -19,6 +19,8 @@ public interface IUserDAO {
 	boolean checkExistPhone(String phone);
 
 	void insert(UserModel user);
-	
+
 	void updatePassword(String password, String email);
+
+	void updateProfile(String fullname, String phone, String email, String image, int id);
 }

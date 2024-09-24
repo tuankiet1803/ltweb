@@ -16,4 +16,6 @@ public interface IUserService {
 	boolean checkExistPhone(String phone);
 
 	void updatePassword(String password, String email);
+	
+	void updateProfile(String fullname, String phone, String email, String image, int id);
 }

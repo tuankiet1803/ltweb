@@ -46,13 +46,11 @@ public class RegisterController extends HttpServlet {
 		// TODO Auto-generated method stub
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		String image = req.getParameter("image");
 		String password = req.getParameter("password");
 		String email = req.getParameter("email");
 		String fullname = req.getParameter("fullname");
 		String phone = req.getParameter("phone");
 		String username = req.getParameter("username");
-		int roleid = Integer.getInteger(req.getParameter("roleid"));
 		userServiceimplement service = new userServiceimplement();
 		String alertMsg = "";
 		if (service.checkExistEmail(email)) {
@@ -67,7 +65,7 @@ public class RegisterController extends HttpServlet {
 			req.getRequestDispatcher("/views/register.jsp").forward(req, resp);
 			return;
 		}
-		boolean isSuccess = service.register(email, password, username, fullname, phone, image, roleid);
+		boolean isSuccess = service.register(email, password, username, fullname, phone, "", 3);
 		if (isSuccess) {
 			req.setAttribute("alert", alertMsg);
 			resp.sendRedirect(req.getContextPath() + "/login");

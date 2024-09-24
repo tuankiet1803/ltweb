@@ -1,5 +1,7 @@
 package ltweb.services.implement;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Random;
 
 import ltweb.dao.implement.userDAOimplement;
@@ -58,13 +60,14 @@ public class userServiceimplement implements IUserService {
 			return false;
 		}
 		UserModel user = new UserModel();
-		user.setEmail("email");
-		user.setUserName("username");
-		user.setFullName("fullname");
-		user.setPassWord("password");
-		user.setAvatar("avatar");
+		user.setEmail(email);
+		user.setUserName(username);
+		user.setFullName(fullname);
+		user.setPassWord(password);
+		user.setAvatar(avatar);
 		user.setRoleid(roleid);
-		user.setPhone("phone");
+		user.setPhone(phone);
+		user.setCreatedDate(Date.valueOf(LocalDate.now()));
 		userDao.insert(user);
 		return true;
 	}
@@ -86,5 +89,11 @@ public class userServiceimplement implements IUserService {
 	public void updatePassword(String password, String email) {
 		// TODO Auto-generated method stub
 		userDao.updatePassword(email, password);
+	}
+
+	@Override
+	public void updateProfile(String fullname, String phone, String email, String image, int id) {
+		// TODO Auto-generated method stub
+		userDao.updateProfile(fullname, phone, email, image, id);
 	}
 }
