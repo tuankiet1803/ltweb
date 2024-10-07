@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import ltweb.Constan;
 import ltweb.models.UserModel;
 import ltweb.services.implement.UserServiceimplement;
 
@@ -23,14 +24,12 @@ public class ProfileController extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static final String UPLOAD_DIRECTORY = "C:\\upload";
-	public static final String DEFAULT_FILENAME = "default.file";
 	private String getFileName(Part part) {
 		for (String content : part.getHeader("content-disposition").split(";")) {
 			if (content.trim().startsWith("filename"))
 				return content.substring(content.indexOf("=") + 2, content.length() - 1);
 		}
-		return DEFAULT_FILENAME;
+		return Constan.DEFAULT_FILENAME;
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,7 +46,7 @@ public class ProfileController extends HttpServlet{
 		UserServiceimplement service = new UserServiceimplement();
 		HttpSession session = req.getSession();
 		UserModel user = (UserModel) session.getAttribute("account");
-		String uploadPath = File.separator + UPLOAD_DIRECTORY; // upload vào thư mục bất kỳ
+		String uploadPath = File.separator + Constan.UPLOAD_DIRECTORY; // upload vào thư mục bất kỳ
 		// String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY; //upload vào thư mục project
 		File uploadDir = new File(uploadPath);
 		if (!uploadDir.exists())
