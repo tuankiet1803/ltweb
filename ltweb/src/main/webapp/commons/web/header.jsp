@@ -76,7 +76,7 @@
 <!-- BEGIN HEADER -->
 <div class="header">
   <div class="container">
-    <a class="site-logo" href="shop-index.html"><img src="${URL}assets/frontend/layout/img/logos/logo-shop-red.png" alt="Metronic Shop UI"></a>
+    <a class="site-logo" href="/ltweb/home"><img src="${URL}assets/frontend/layout/img/logos/logo-shop-red.png" alt="Metronic Shop UI"></a>
 
     <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 

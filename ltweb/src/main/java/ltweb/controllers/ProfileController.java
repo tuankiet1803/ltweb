@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import ltweb.models.UserModel;
-import ltweb.services.implement.userServiceimplement;
+import ltweb.services.implement.UserServiceimplement;
 
 @WebServlet(urlPatterns = { "/profile" })
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
@@ -44,7 +44,7 @@ public class ProfileController extends HttpServlet{
 		String fullname = req.getParameter("fullname");
 		String phone = req.getParameter("phone");
 		String email = req.getParameter("email");
-		userServiceimplement service = new userServiceimplement();
+		UserServiceimplement service = new UserServiceimplement();
 		HttpSession session = req.getSession();
 		UserModel user = (UserModel) session.getAttribute("account");
 		String uploadPath = File.separator + UPLOAD_DIRECTORY; // upload vào thư mục bất kỳ

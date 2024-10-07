@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import ltweb.services.implement.userServiceimplement;
+import ltweb.services.implement.UserServiceimplement;
 
 @WebServlet(urlPatterns = "/register")
 public class RegisterController extends HttpServlet {
@@ -51,7 +51,7 @@ public class RegisterController extends HttpServlet {
 		String fullname = req.getParameter("fullname");
 		String phone = req.getParameter("phone");
 		String username = req.getParameter("username");
-		userServiceimplement service = new userServiceimplement();
+		UserServiceimplement service = new UserServiceimplement();
 		String alertMsg = "";
 		if (service.checkExistEmail(email)) {
 			alertMsg = "Email đã tồn tại!";

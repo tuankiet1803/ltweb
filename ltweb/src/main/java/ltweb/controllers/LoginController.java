@@ -10,7 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import ltweb.models.UserModel;
-import ltweb.services.implement.userServiceimplement;
+import ltweb.services.IUserService;
+import ltweb.services.implement.UserServiceimplement;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginController extends HttpServlet {
@@ -21,7 +22,6 @@ public class LoginController extends HttpServlet {
 	public static final String SESSION_USERNAME = "username";
 	public static final String COOKIE_REMEMBER = "username";
 	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -54,7 +54,7 @@ public class LoginController extends HttpServlet {
 		String password = req.getParameter("password");
 		boolean isRememberMe = false;
 		String remember = req.getParameter("remember");
-
+		UserServiceimplement service = new UserServiceimplement();
 		if ("on".equals(remember)) {
 			isRememberMe = true;
 		}
@@ -66,7 +66,7 @@ public class LoginController extends HttpServlet {
 			return;
 		}
 
-		userServiceimplement service = new userServiceimplement();
+		
 
 		UserModel user = service.login(username, password);
 		if (user != null) {

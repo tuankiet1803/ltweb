@@ -10,7 +10,7 @@ import ltweb.config.DBConnectMySQL;
 import ltweb.dao.IUserDAO;
 import ltweb.models.UserModel;
 
-public class userDAOimplement extends DBConnectMySQL implements IUserDAO {
+public class UserDAOimplement extends DBConnectMySQL implements IUserDAO {
 
 	public Connection conn = null;
 	public PreparedStatement ps = null;

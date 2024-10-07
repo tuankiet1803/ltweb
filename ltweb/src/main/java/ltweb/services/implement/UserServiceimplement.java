@@ -4,13 +4,13 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Random;
 
-import ltweb.dao.implement.userDAOimplement;
+import ltweb.dao.implement.UserDAOimplement;
 import ltweb.models.UserModel;
 import ltweb.services.IUserService;
 
-public class userServiceimplement implements IUserService {
+public class UserServiceimplement implements IUserService {
 
-	userDAOimplement userDao = new userDAOimplement();
+	UserDAOimplement userDao = new UserDAOimplement();
 
 	@Override
 	public UserModel login(String username, String password) {
